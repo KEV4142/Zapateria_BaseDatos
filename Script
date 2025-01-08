@@ -1,0 +1,30 @@
+-- CREATE DATABASE zapateria;
+-- USE zapateria;
+
+CREATE TABLE categoria(
+categoriaid	SERIAL NOT NULL,
+descripcion	VARCHAR(100) NOT NULL,
+estado	VARCHAR(1) NOT NULL DEFAULT 'A'
+);
+ALTER TABLE categoria ADD CONSTRAINT pkcategoriaid PRIMARY KEY(categoriaid);
+ALTER TABLE categoria ADD CONSTRAINT ckcategoriaestado CHECK (estado IN('A','I','B'));
+
+CREATE TABLE imagen (
+imagenid	SERIAL NOT NULL,
+url	VARCHAR(100) NOT NULL,
+publicid	VARCHAR(100) NOT NULL
+);
+ALTER TABLE imagen ADD CONSTRAINT pkimagenid PRIMARY KEY(imagenid);
+
+CREATE TABLE productos (
+    productoid SERIAL NOT NULL,
+    descripcion	VARCHAR(100) NULL,
+    precio NUMERIC(10, 2) NULL,
+	categoriaid INT NOT NULL,
+	imagenid INT NULL,
+    estado 	VARCHAR(1) NOT NULL DEFAULT 'A'
+);
+ALTER TABLE productos ADD CONSTRAINT pkproductosid PRIMARY KEY(productoid);
+ALTER TABLE productos ADD CONSTRAINT ckproductosestado CHECK (estado IN('A','I','B'));
+ALTER TABLE productos ADD CONSTRAINT fkproductocategoriaid FOREIGN KEY (categoriaid) REFERENCES categoria(categoriaid);
+ALTER TABLE productos ADD CONSTRAINT fkproductoimagenid FOREIGN KEY (imagenid) REFERENCES imagen(imagenid);
