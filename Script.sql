@@ -1,20 +1,20 @@
 -- CREATE DATABASE zapateria;
 -- USE zapateria;
 
-CREATE TABLE categoria(
+CREATE TABLE categorias(
 categoriaid	SERIAL NOT NULL,
 descripcion	VARCHAR(100) NOT NULL,
 estado	VARCHAR(1) NOT NULL DEFAULT 'A'
 );
-ALTER TABLE categoria ADD CONSTRAINT pkcategoriaid PRIMARY KEY(categoriaid);
-ALTER TABLE categoria ADD CONSTRAINT ckcategoriaestado CHECK (estado IN('A','I','B'));
+ALTER TABLE categorias ADD CONSTRAINT pkcategoriaid PRIMARY KEY(categoriaid);
+ALTER TABLE categorias ADD CONSTRAINT ckcategoriaestado CHECK (estado IN('A','I','B'));
 
-CREATE TABLE imagen (
+CREATE TABLE imagenes (
 imagenid	SERIAL NOT NULL,
 url	VARCHAR(100) NOT NULL,
 publicid	VARCHAR(100) NOT NULL
 );
-ALTER TABLE imagen ADD CONSTRAINT pkimagenid PRIMARY KEY(imagenid);
+ALTER TABLE imagenes ADD CONSTRAINT pkimagenid PRIMARY KEY(imagenid);
 
 CREATE TABLE productos (
     productoid SERIAL NOT NULL,
@@ -26,5 +26,5 @@ CREATE TABLE productos (
 );
 ALTER TABLE productos ADD CONSTRAINT pkproductosid PRIMARY KEY(productoid);
 ALTER TABLE productos ADD CONSTRAINT ckproductosestado CHECK (estado IN('A','I','B'));
-ALTER TABLE productos ADD CONSTRAINT fkproductocategoriaid FOREIGN KEY (categoriaid) REFERENCES categoria(categoriaid);
-ALTER TABLE productos ADD CONSTRAINT fkproductoimagenid FOREIGN KEY (imagenid) REFERENCES imagen(imagenid);
+ALTER TABLE productos ADD CONSTRAINT fkproductocategoriaid FOREIGN KEY (categoriaid) REFERENCES categorias(categoriaid);
+ALTER TABLE productos ADD CONSTRAINT fkproductoimagenid FOREIGN KEY (imagenid) REFERENCES imagenes(imagenid);
