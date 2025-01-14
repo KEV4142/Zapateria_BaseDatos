@@ -12,9 +12,12 @@ ALTER TABLE categorias ADD CONSTRAINT ckcategoriaestado CHECK (estado IN('A','I'
 CREATE TABLE imagenes (
 imagenid	SERIAL NOT NULL,
 url	VARCHAR(100) NOT NULL,
-publicid	VARCHAR(100) NOT NULL
+publicid	VARCHAR(100) NOT NULL,
+estado VARCHAR(1) NOT NULL DEFAULT 'A'
 );
 ALTER TABLE imagenes ADD CONSTRAINT pkimagenid PRIMARY KEY(imagenid);
+ALTER TABLE imagenes ADD CONSTRAINT ckimagenesaestado CHECK (estado IN('A','I','B'));
+
 
 CREATE TABLE productos (
     productoid SERIAL NOT NULL,
