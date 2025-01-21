@@ -1,3 +1,8 @@
+INSERT INTO "AspNetRoles" ("Id","Name","NormalizedName","ConcurrencyStamp")
+VALUES
+('51df7aae-a506-46ff-8e34-9f2f0c661885','ADMIN','ADMIN',NULL),
+('368cb24e-03d3-4a01-b558-dbde9b33272c','CLIENT','CLIENT',NULL);
+
 INSERT INTO "AspNetRoleClaims" ("RoleId", "ClaimType", "ClaimValue")
 VALUES
 ('51df7aae-a506-46ff-8e34-9f2f0c661885', 'POLICIES', 'CATEGORIA_READ'),
